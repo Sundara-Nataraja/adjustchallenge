@@ -1,5 +1,7 @@
 # adjustchallenge
 
+Framework used : django & django-rest-framework 
+
 The AD campaign Url can be accessed using **<ip>/campaigns/cpi/ <br/>**
 API could be version also but for assignment ihave not opted it
   
