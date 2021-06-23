@@ -27,13 +27,13 @@ Usecases with urls:
   /campaigns/cpi/?date__gte=2017-05-01&date__lte=2017-05-31&os=ios&groupby=date&columns=installs&ordering=-date
   ```
 3) Show revenue, earned on June 1, 2017 in US, broken down by operating system and sorted by revenue in descending order.
-  '''
+  ```
   /campaigns/cpi/?date=2017-06-01&country=US&groupby=os&columns=revenue&ordering=-revenue
-  '''
+  ```
 4) Show CPI and spend for Canada (CA) broken down by channel ordered by CPI in descending order.
-  '''
+ ```
   /campaigns/cpi/?country=CA&groupby=channel&columns=cpi,spend&ordering=-cpi
-  '''
+  ```
   
   
   
