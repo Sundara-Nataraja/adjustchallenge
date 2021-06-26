@@ -1,9 +1,14 @@
-# adjustchallenge
+# Coding Challenge for Adjust
 
-Framework used : django & django-rest-framework 
+Goal : To provide a Single API that allows user to get insights about there app adcampaigns.<br/>
+The API should enable the client to getrequired information using fitering,breakdown and Ordering.
 
-The AD campaign Url can be accessed using **<ip>/campaigns/cpi/ <br/>**
-API could be version also but for assignment ihave not opted it
+Technology Stack: Python , django django-rest-framework 
+DB : sqlite
+
+To start the project : please run dataupload file that pushes the data to database
+
+The  Url can be accessed through  **<ip>/campaigns/cpi/ <br/>**
   
   1) Filtering can be applied on **Columnname** via date(=,__gte,__lte,__gt,__lt) , country(=),channel(=),os(=)
       eg: date__lte=2017-06-01
