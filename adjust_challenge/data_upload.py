@@ -42,5 +42,6 @@ def get_data(url: str):
     print(ADCampaigns.objects.all())
 
 
+
 if __name__ == '__main__':
     get_data(DATASET_URL)

@@ -31,9 +31,10 @@ def validate_params(request, fields, queryparam):
         if all([param in fields for param in params]):
             return params
         else:
-            raise NotValidParams("Params not provided!")
+            invalid_params =  set(params) - set(fields)
+            raise NotValidParams(f"{''.join(invalid_params)}")
     else:
-        raise EmptyParams("Params not provided!")
+        raise EmptyParams("Params not Provided!")
 
 
 class ADCampaignList(generics.ListAPIView):
@@ -131,22 +132,22 @@ class ADCampaignList(generics.ListAPIView):
             return Response(
                 {"message": f"Please provide atleast one groupby columns from : {','.join(self.groupby_feilds)}"},
                 status=status.HTTP_400_BAD_REQUEST)
-        except NotValidParams:
-            return Response({"message": f"Please provide valid groupby columns from : {','.join(self.groupby_feilds)}"},
+        except NotValidParams as nvp:
+            return Response({"message": f" Invalid Groupby parm :{nvp}, You can choose from these : {','.join(self.groupby_feilds)}"},
                             status=status.HTTP_400_BAD_REQUEST)
 
         # 3 add column aggregation to the data
         try:
             columns_data = self.columns_to_include(request, grouped_qs)
-        except NotValidParams:
-            return Response({"message": f"Please provide valid columns name from : {','.join(self.column_fields)}"},
+        except NotValidParams as nvp:
+            return Response({"message": f"Invalid Column parm {nvp}, You can choose from these : {','.join(self.column_fields)}"},
                             status=status.HTTP_400_BAD_REQUEST)
         # 3 ordering the data
         try:
             ordered_data = self.ordering_data(request, columns_data)
-        except NotValidParams:
+        except NotValidParams as nvp:
             return Response(
-                {"message": f"Please provide valid ordering columnname from : {','.join(self.ordering_fields)}"},
+                {"message": f"Invalid Ordering param {nvp}, You can choose from these : {','.join(self.ordering_fields)}"},
                 status=status.HTTP_400_BAD_REQUEST)
 
         return Response(ordered_data, status=status.HTTP_200_OK)
